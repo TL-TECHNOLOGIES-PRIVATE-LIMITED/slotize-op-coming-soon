@@ -3,6 +3,7 @@ import * as THREE from 'three';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faFacebook, faTwitter, faInstagram, faLinkedin, faWhatsapp } from '@fortawesome/free-brands-svg-icons';
 import TypingEffect from './TypingEffect';
+import { format } from 'date-fns';
 
 const ComingSoonPage = () => {
   const canvasRef = useRef(null);
@@ -12,6 +13,8 @@ const ComingSoonPage = () => {
   const particlesMeshRef = useRef(null);
   const confettiParticlesRef = useRef(null);
   const timeRef = useRef(0);
+
+  const LAUNCH_DATE = new Date('2025-01-15T00:00:00');
   const [isLive, setIsLive] = React.useState(false);
   const [countdown, setCountdown] = React.useState({
     days: '00',
@@ -325,7 +328,7 @@ const ComingSoonPage = () => {
   }, [isLive]);
 
   useEffect(() => {
-    const launchDate = new Date('2025-01-15T00:00:00').getTime();
+    const launchDate = LAUNCH_DATE.getTime();
 
     const updateCountdown = () => {
       const now = new Date().getTime();
@@ -405,7 +408,7 @@ const ComingSoonPage = () => {
                   <CountdownItem value={countdown.seconds} label="Seconds" />
                 </div>
                 <p className="text-sm sm:text-base text-gray-300">
-                  <span className="font-semibold">December 31, 2024</span>
+                  <span className="font-semibold">{format(LAUNCH_DATE, 'dd MMMM, yyyy')}</span>
                 </p>
               </>
             ) : (
@@ -458,8 +461,26 @@ const ComingSoonPage = () => {
               />
             </a>
           </div>
+          <footer className="w-full mt-4  py-4 px-4 text-center bg-black/70 backdrop-blur-sm">
+          <div className="text-sm text-gray-400">
+            <p>
+              © 2025 Slotize. All rights reserved. 
+              <span className="mx-2">|</span>
+              A product of <a 
+                href="https://tltechnologies.net" 
+                target="_blank" 
+                rel="noreferrer" 
+                className="text-blue-400 hover:text-blue-300 transition-colors"
+              >
+                TL Technologies
+              </a>
+            </p>
+          </div>
+        </footer>
         </div>
+        
       </div>
+      
     </div>
   );
 };
