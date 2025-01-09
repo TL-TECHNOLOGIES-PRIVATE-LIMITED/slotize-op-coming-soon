@@ -32,7 +32,7 @@ const ComingSoonPage = () => {
     const colors = new Float32Array(particlesCount * 3);
     const velocities = new Float32Array(particlesCount * 3);
     const rotations = new Float32Array(particlesCount * 3);
-  
+
     // Festive colors for confetti
     const festiveColors = [
       new THREE.Color(0xff0000), // Red
@@ -44,37 +44,37 @@ const ComingSoonPage = () => {
       new THREE.Color(0xffa500), // Orange
       new THREE.Color(0x800080)  // Purple
     ];
-  
+
     for (let i = 0; i < particlesCount; i++) {
       const i3 = i * 3;
-  
+
       // Start from the center of the screen (0, 0, 0)
       positions[i3] = 0;
       positions[i3 + 1] = 0;
       positions[i3 + 2] = 0;
-  
+
       // Random velocities for an outward explosion effect
       const angle = Math.random() * Math.PI * 2;
-      const speed = Math.random() * 0.03 + 0.01; 
+      const speed = Math.random() * 0.03 + 0.01;
       velocities[i3] = Math.cos(angle) * speed;
       velocities[i3 + 1] = Math.sin(angle) * speed;
       velocities[i3 + 2] = (Math.random() - 0.5) * 0.05;
-  
+
       // Random rotations for the particles to spin during the explosion
       rotations[i3] = Math.random() * 0.02;
       rotations[i3 + 1] = Math.random() * 0.02;
       rotations[i3 + 2] = Math.random() * 0.02;
-  
+
       // Random colors from festive palette
       const color = festiveColors[Math.floor(Math.random() * festiveColors.length)];
       colors[i3] = color.r;
       colors[i3 + 1] = color.g;
       colors[i3 + 2] = color.b;
     }
-  
+
     confettiGeometry.setAttribute('position', new THREE.BufferAttribute(positions, 3));
     confettiGeometry.setAttribute('color', new THREE.BufferAttribute(colors, 3));
-  
+
     const confettiMaterial = new THREE.PointsMaterial({
       size: 0.15,
       vertexColors: true,
@@ -82,7 +82,7 @@ const ComingSoonPage = () => {
       opacity: 0.8,
       blending: THREE.AdditiveBlending
     });
-  
+
     const confettiParticles = new THREE.Points(confettiGeometry, confettiMaterial);
     confettiParticlesRef.current = {
       mesh: confettiParticles,
@@ -90,38 +90,38 @@ const ComingSoonPage = () => {
       rotations,
       positions: confettiParticles.geometry.attributes.position.array
     };
-  
+
     sceneRef.current.add(confettiParticles);
   };
-  
+
   const animateConfetti = () => {
     requestAnimationFrame(animateConfetti);
-  
+
     if (confettiParticlesRef.current) {
       const positions = confettiParticlesRef.current.positions;
       const velocities = confettiParticlesRef.current.velocities;
-  
+
       for (let i = 0; i < positions.length; i += 3) {
         // Update positions based on velocity
         positions[i] += velocities[i];
         positions[i + 1] += velocities[i + 1];
         positions[i + 2] += velocities[i + 2];
-  
+
         // Add some swaying motion and reset particles when they reach a certain limit
         if (positions[i + 1] < -5) {
           positions[i + 1] = 10;
           positions[i] = 0;
           positions[i + 2] = 0;
         }
-  
+
         // Add some swaying motion
         positions[i] += Math.sin(timeRef.current + i) * 0.01;
       }
-  
+
       confettiParticlesRef.current.mesh.geometry.attributes.position.needsUpdate = true;
       timeRef.current += 0.01;
     }
-  
+
     rendererRef.current.render(sceneRef.current, cameraRef.current);
   };
 
@@ -408,7 +408,7 @@ const ComingSoonPage = () => {
                   <CountdownItem value={countdown.seconds} label="Seconds" />
                 </div>
                 <p className="text-sm sm:text-base text-gray-300">
-                  <span className="font-semibold">{format(LAUNCH_DATE, 'dd MMMM, yyyy')}</span>
+                  <span className="font-semibold text-base md:text-2xl">{format(LAUNCH_DATE, 'dd MMMM, yyyy')}</span>
                 </p>
               </>
             ) : (
@@ -461,26 +461,26 @@ const ComingSoonPage = () => {
               />
             </a>
           </div>
-          <footer className="w-full mt-4  py-4 px-4 text-center bg-black/70 backdrop-blur-sm">
-          <div className="text-sm text-gray-400">
-            <p>
-              © 2025 Slotize. All rights reserved. 
-              <span className="mx-2">|</span>
-              A product of <a 
-                href="https://tltechnologies.net" 
-                target="_blank" 
-                rel="noreferrer" 
-                className="text-blue-400 hover:text-blue-300 transition-colors"
-              >
-                TL Technologies
-              </a>
-            </p>
-          </div>
-        </footer>
+          <footer className="w-full mt-4 py-4 px-4 bg-black/70 backdrop-blur-sm">
+            <div className="flex flex-col items-center text-sm text-gray-400">
+              <p className="mb-1 text-base">© 2025 Slotize. All rights reserved.</p>
+              <p className='text-sm'>
+                A product of{' '}
+                <a
+                  href="https://tltechnologies.net"
+                  target="_blank"
+                  rel="noreferrer"
+                  className="text-blue-400 hover:text-blue-300 transition-colors"
+                >
+                  TL Technologies
+                </a>
+              </p>
+            </div>
+          </footer>
         </div>
-        
+
       </div>
-      
+
     </div>
   );
 };
