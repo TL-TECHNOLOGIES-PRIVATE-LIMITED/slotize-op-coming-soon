@@ -415,7 +415,7 @@ const ComingSoonPage = () => {
               <LiveMessage />
             )}
           </div>
-          <div className="flex justify-center mt-6 space-x-4">
+          <div className="flex justify-center mt-6 space-x-2 md:space-x-4">
             <a
               href="https://api.whatsapp.com/send/?phone=%2B919061432814&text=Hello%2C+I+am+interested+to+know+more+about+PRODUCTS+%26+SERVICES&type=phone_number&app_absent=0"
               target="_blank"
