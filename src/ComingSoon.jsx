@@ -1,7 +1,7 @@
 import React, { useEffect, useRef } from 'react';
 import * as THREE from 'three';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
-import { faFacebook, faTwitter, faInstagram, faLinkedin, faWhatsapp } from '@fortawesome/free-brands-svg-icons';
+import { faFacebook, faTwitter, faInstagram, faLinkedin, faWhatsapp ,faYoutube ,faGooglePlus ,faGooglePlusSquare } from '@fortawesome/free-brands-svg-icons';
 import TypingEffect from './TypingEffect';
 import { format } from 'date-fns';
 
@@ -417,6 +417,17 @@ const ComingSoonPage = () => {
           </div>
           <div className="flex justify-center mt-6 space-x-4">
             <a
+              href="https://api.whatsapp.com/send/?phone=%2B919061432814&text=Hello%2C+I+am+interested+to+know+more+about+PRODUCTS+%26+SERVICES&type=phone_number&app_absent=0"
+              target="_blank"
+              rel="noreferrer"
+              className="w-12 h-12 flex items-center hover:scale-110 justify-center rounded-full bg-white/10 backdrop-blur-md shadow-lg hover:bg-white/20 transition group"
+            >
+              <FontAwesomeIcon
+                icon={faWhatsapp}
+                className="text-green-500 text-xl transition-transform transform group-hover:scale-110"
+              />
+            </a>
+            <a
               href="https://www.facebook.com/tltechnologiespvtltd"
               target="_blank"
               rel="noreferrer"
@@ -428,14 +439,14 @@ const ComingSoonPage = () => {
               />
             </a>
             <a
-              href="https://api.whatsapp.com/send/?phone=%2B919061432814&text=Hello%2C+I+am+interested+to+know+more+about+PRODUCTS+%26+SERVICES&type=phone_number&app_absent=0"
+              href="https://g.co/kgs/Xjm7CWT"
               target="_blank"
               rel="noreferrer"
               className="w-12 h-12 flex items-center hover:scale-110 justify-center rounded-full bg-white/10 backdrop-blur-md shadow-lg hover:bg-white/20 transition group"
             >
               <FontAwesomeIcon
-                icon={faWhatsapp}
-                className="text-green-500 text-xl transition-transform transform group-hover:scale-110"
+                icon={faGooglePlusSquare}
+                className="text-blue-500 text-xl transition-transform transform group-hover:scale-110"
               />
             </a>
             <a
@@ -458,6 +469,17 @@ const ComingSoonPage = () => {
               <FontAwesomeIcon
                 icon={faLinkedin}
                 className="text-blue-700 text-xl transition-transform transform group-hover:scale-110"
+              />
+            </a>
+            <a
+              href="https://www.youtube.com/@tltechnologiespvtltd-sangi" // Replace with the actual YouTube URL
+              target="_blank"
+              rel="noreferrer"
+              className="w-12 h-12 flex items-center hover:scale-110 justify-center rounded-full bg-white/10 backdrop-blur-md shadow-lg hover:bg-white/20 transition group"
+            >
+              <FontAwesomeIcon
+                icon={faYoutube}
+                className="text-red-600 text-xl transition-transform transform group-hover:scale-110"
               />
             </a>
           </div>
