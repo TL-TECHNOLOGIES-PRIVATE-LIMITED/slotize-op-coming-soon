@@ -1,24 +1,33 @@
 import { useEffect, useState } from 'react';
-import './App.css'
-import ComingSoonPage from './ComingSoon'
+import { createBrowserRouter, RouterProvider } from 'react-router-dom';
+import './App.css';
+import ComingSoonPage from './ComingSoon';
 import Preloader from './Preloader';
+import NotFoundPage from './NotFoundPage';
 
 
 function App() {
-
   const [loading, setLoading] = useState(true);
 
-useEffect(() => {
-  const timer = setTimeout(() => setLoading(false), 2000); 
-  return () => clearTimeout(timer);
-}, []);
+  useEffect(() => {
+    const timer = setTimeout(() => setLoading(false), 2000);
+    return () => clearTimeout(timer);
+  }, []);
 
-  return (
+  if (loading) {
+    return <Preloader />;
+  }
 
-    <div >
-      {loading ? <Preloader /> :  <ComingSoonPage/>}
-    </div>
-  )
+  // Define the router using `createBrowserRouter`
+  const router = createBrowserRouter([
+    {
+      path: "/",
+      element: <ComingSoonPage />,
+      errorElement: <NotFoundPage />, // Handles undefined routes
+    },
+  ]);
+
+  return <RouterProvider router={router} />;
 }
 
-export default App
+export default App;
